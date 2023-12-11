@@ -2,11 +2,15 @@ package com.callor.blackjackCard;
 
 public class Card {
 	
-	String dia;
-	String clob;
-	String spade;
-	String love;
-	
+	public String dia;
+	public String clob;
+	public String spade;
+	public String love;
+	public String King;
+	public String Ace;
+	public String J;
+	public String Queen;
+	public int num;
 	
 	
 
