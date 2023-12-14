@@ -1,6 +1,6 @@
 package com.callor.blackjack.util;
 
-public class ServiceLine {
+public class Line {
 	public static void dLine(int length) {
 		System.out.println("=".repeat(50));
 	}

@@ -1,54 +1,75 @@
 package com.callor.blackjack.service.impl;
 
-import com.callor.blackjack.service.BlackjackService;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
-public class BlackjackServiceImplV1 implements BlackjackService{
+import com.callor.blackjack.model.CardDto;
+import com.callor.blackjack.service.BlackjackService;
+import com.callor.blackjack.util.Line;
+
+public class BlackjackServiceImplV1 implements BlackjackService{	
+	protected Scanner scan = null;
+	protected BlackjackService blService = null;
+	List<CardDto> deckList = new ArrayList<CardDto>();
 	
-	
+	public BlackjackServiceImplV1() {
+		scan = new Scanner(System.in);	
+	}
 	
 
 	@Override
 	public void card() {
+		// TODO : 카드
+		String strSuit = "♠♥♣◆";
+		String strDenomination = "A234567890KQJ";
 		
-		boolean noSame[] = new boolean[52];
-		int cardSet[] = new int[52];
-		int playerNum = 0;
-		int dealerNum = 0;
-		for(int i = 0; i < noSame.length; i++) {
-			noSame[i] = false;
-		}
-		while(playerNum < 52) {
-			dealerNum = (int)(Math.random()*52);
-			if(noSame[dealerNum] == false) {
-				noSame[dealerNum] = true;
-				cardSet[playerNum] = dealerNum + 1;
-				playerNum++;
+		String[] suits = strSuit.split("");
+		String[] denos = strDenomination.split("");
+		
+		
+		for(String suit : suits) {
+			for(String deno : denos) {			
+				CardDto dto = new CardDto();
+				dto.suit = suit;
+				dto.denomination = deno;
+				
+				int value = 0;
+				try {
+					value = Integer.valueOf(deno);
+					dto.value = value;
+				} catch (Exception e) {
+					if(deno.equals("A")) value = 1;
+					else value = 10;
+					dto.value = value;
+				}
+				deckList.add(dto);
 			}
-		}		
+		}
+		Collections.shuffle(deckList);
 	}
 
 	@Override
-	// 한장은 보여주고 한장은 보여주지않음
-	// 플레이어가 Hit , Stay 결정시 딜러와 카드비교하고
-	// 16이하면 한장뽑음
 	public void Dealer() {
-		int dealersum = 0;
+		// TODO : 딜러		
 	}
 
 	@Override
+	// 둘다 21이 넘는 카드를 받게되면 무승부
 	// Hit or Stay
-	//Stay 결정시 각자의 카드를 공개하고 비교해서 승패결정
+	// Stay 결정시 각자의 카드를 공개하고 비교해서 승패결정
+	// ace 한장과 10의가치가 있는 카드가뽑히면 블랙잭 딜러가 블랙잭이아니면 승리
+	// 카드2장을 받았을때 값이 충분하다 생각되면 스테이
+	// 21 넘는 값을 받았을떈 버스트 , 버스트되면 패배 종료
 	public void Player() {
-		int playersum = 0;
+		// TODO : 플레이어		
 	}
 
 	@Override
 	public void Game() {
-		
-		System.out.println("Black Jack Game");
-		
-		while(true) {
-		}
+		// TODO : 게임
+	
 		
 	}
 
